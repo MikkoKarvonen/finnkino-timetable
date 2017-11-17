@@ -1,0 +1,10 @@
+.laatikko{
+  float: left;
+  width: 300px;
+  text-align: center;
+  padding: 10px;
+}
+
+.juliste{
+  max-width: 200px;
+}
