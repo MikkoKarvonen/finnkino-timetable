@@ -5,6 +5,10 @@
   padding: 10px;
 }
 
+.container .city{
+  display: none;
+}
+
 .juliste{
   max-width: 200px;
 }

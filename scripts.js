@@ -77,3 +77,9 @@ function parseXml(xml){
     }
   });
 }
+
+$(".show-city").click(function(e) {
+      e.preventDefault();
+      $('.container .city').fadeOut(500);
+      $('#' + $(this).data('rel')).fadeIn(1500);
+});
