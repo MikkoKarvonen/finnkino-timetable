@@ -1,14 +1,7 @@
-.laatikko{
-  float: left;
-  width: 20%;
+.card-content, .media-content{
   text-align: center;
-  padding: 10px;
 }
 
 .container .city{
   display: none;
-}
-
-.juliste{
-  max-width: 200px;
 }

@@ -16,22 +16,22 @@ var indexNum = 0;
 
 function parseXml(xml){
   $(xml).find('Show').each(function(){
-    var img = $(this).find('EventMediumImagePortrait').text();
+    var img = $(this).find('EventLargeImageLandscape').text();
     var link = $(this).find('ShowURL').text();
     var divIndex = $(this).index();
     var addColumns = '';
-    var columnNum = "columns" + Math.floor(divIndex/3);
-    if (((divIndex) % 3) == 0){
+    var columnNum = "columns" + Math.floor(divIndex/4);
+
+    if (((divIndex) % 4) == 0){
       addColumns += "<div class='columns' id='" + columnNum + "'>";
       console.log(addColumns);
     }
-    console.log(divIndex + " " + Math.floor(divIndex/3));
 
     var details =
-    "<div class='column is-one-third'>"
+    "<div class='column'>"
       + "<div class='card'>"
         + "<div class='card-image'>"
-          + "<figure class='image is-4by3'>"
+          + "<figure class='image'>"
             + "<img src=" + img + " class='juliste'></img>"
           + "</figure>"
         + "</div>"
@@ -41,23 +41,21 @@ function parseXml(xml){
               + "<p class='title is-4'>"+ $(this).find('Title').text() + "</p>"
             + "</div>"
           + "</div>"
+          + "<div class='content'>"
+            + $(this).find('dttmShowStart').text()
+            + "<br />"
+            + $(this).find('Theatre').text()
+            + "<br />"
+            + $(this).find('TheatreAuditorium').text()
+          + "</div>"
         +"</div>"
-        + "<div class='content'>"
-          + $(this).find('dttmShowStart').text()
-          + "<br />"
-          + $(this).find('Theatre').text()
-          + "<br />"
-          + $(this).find('TheatreAuditorium').text()
-          + "<br />"
-          + "<a href=" + link + " target='blank'>"
-          + "<button class='button'>Liput</button></a>"
+        + "<footer class='card-footer'>"
+          + "<p class='card-footer-item'>"
+            + "<a href=" + link + " target='blank'>Liput</a>"
+          + "</p>"
         + "</div>"
       + "</div>"
     + "</div>";
-    if (((divIndex + 1) % 3) == 0){
-      console.log('next line');
-      details += "</div><div class='columns'>";
-    }
 
     if ($(this).find('Theatre').text().includes('Helsinki')
     || $(this).find('Theatre').text().includes('Espoo')
