@@ -126,3 +126,20 @@ $(".show-city").click(function(e) {
       $('.container .city').fadeOut(500);
       $('#' + $(this).data('rel')).fadeIn(1500);
 });
+
+function showTime() {
+  var today = new Date();
+  var y = today.getFullYear();
+  var mo = today.getMonth() + 1;
+  var d = today.getDate();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  if (m < 10){
+    m = "0" + m;
+  }
+  document.getElementById('time').innerHTML = d + "." + mo + "." + y + " <br> " + h + ":" + m;
+  t = setTimeout(function() {
+    showTime()
+  }, 60000);
+}
+showTime();

@@ -1,7 +1,11 @@
-.card-content, .media-content{
+.card-content, .title{
   text-align: center;
 }
 
 .container .city{
   display: none;
+}
+
+.hero{
+  margin-bottom: 25px;
 }
