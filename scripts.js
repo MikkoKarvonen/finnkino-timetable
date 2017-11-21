@@ -12,68 +12,113 @@ $(document).ready(function(){
   });
 });
 
+var indexNum = 0;
+
 function parseXml(xml){
   $(xml).find('Show').each(function(){
     var img = $(this).find('EventMediumImagePortrait').text();
     var link = $(this).find('ShowURL').text();
+    var divIndex = $(this).index();
+    var addColumns = '';
+    var columnNum = "columns" + Math.floor(divIndex/3);
+    if (((divIndex) % 3) == 0){
+      addColumns += "<div class='columns' id='" + columnNum + "'>";
+      console.log(addColumns);
+    }
+    console.log(divIndex + " " + Math.floor(divIndex/3));
+
     var details =
-      "<div class='laatikko'>"
-      + "<img src=" + img + " class='juliste'></img>"
-      + "<br />"
-      + $(this).find('Title').text()
-      + "<br />"
-      + $(this).find('dttmShowStart').text()
-      + "<br />"
-      + $(this).find('Theatre').text()
-      + "<br />"
-      + $(this).find('TheatreAuditorium').text()
-      + "<br />"
-      + "<a href=" + link + " target='blank'>"
-      + "<button>Liput</button></a>"
-      + "</div>";
+    "<div class='column is-one-third'>"
+      + "<div class='card'>"
+        + "<div class='card-image'>"
+          + "<figure class='image is-4by3'>"
+            + "<img src=" + img + " class='juliste'></img>"
+          + "</figure>"
+        + "</div>"
+        + "<div class='card-content'>"
+          + "<div class='media'>"
+            + "<div class='media-content'>"
+              + "<p class='title is-4'>"+ $(this).find('Title').text() + "</p>"
+            + "</div>"
+          + "</div>"
+        +"</div>"
+        + "<div class='content'>"
+          + $(this).find('dttmShowStart').text()
+          + "<br />"
+          + $(this).find('Theatre').text()
+          + "<br />"
+          + $(this).find('TheatreAuditorium').text()
+          + "<br />"
+          + "<a href=" + link + " target='blank'>"
+          + "<button class='button'>Liput</button></a>"
+        + "</div>"
+      + "</div>"
+    + "</div>";
+    if (((divIndex + 1) % 3) == 0){
+      console.log('next line');
+      details += "</div><div class='columns'>";
+    }
 
     if ($(this).find('Theatre').text().includes('Helsinki')
     || $(this).find('Theatre').text().includes('Espoo')
     || $(this).find('Theatre').text().includes('Vantaa')){
-      $("#paakaupunki").append(details);
+      $("#paakaupunki").append(addColumns);
+      $("#paakaupunki #" + columnNum).append(details);
     }
 
     if ($(this).find('Theatre').text().includes('Helsinki')){
-      $("#helsinki").append(details);
+      $("#helsinki").append(addColumns);
+      $("#helsinki #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Espoo')){
-      $("#espoo").append(details);
+      $("#espoo").append(addColumns);
+      $("#espoo #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Tampere')){
-      $("#tampere").append(details);
+      $("#tampere").append(addColumns);
+      $("#tampere #" + columnNum).append(details);
     }
 
     if ($(this).find('Theatre').text().includes('Omena')){
-      $("#isoomena").append(details);
+      $("#isoomena").append(addColumns);
+      $("#isoomena #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Sello')){
-      $("#sello").append(details);
+      $("#sello").append(addColumns);
+      $("#sello #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Kinopalatsi, H')){
-      $("#kinopalatsi").append(details);
+      $("#kinopalatsi").append(addColumns);
+      $("#kinopalatsi #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Tennispalatsi')){
-      $("#tennispalatsi").append(details);
+      $("#tennispalatsi").append(addColumns);
+      $("#tennispalatsi #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Jyväskylä')){
-      $("#jyvaskyla").append(details);
+      $("#jyvaskyla").append(addColumns);
+      $("#jyvaskyla #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Kuopio')){
-      $("#kuopio").append(details);
+      $("#kuopio").append(addColumns);
+      $("#kuopio #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Lahti')){
-      $("#lahti").append(details);
+      $("#lahti").append(addColumns);
+      $("#lahti #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Lappeenranta')){
-      $("#lappeenranta").append(details);
+      $("#lappeenranta").append(addColumns);
+      $("#lappeenranta #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Oulu')){
-      $("#oulu").append(details);
+      $("#oulu").append(addColumns);
+      $("#oulu #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Pori')){
-      $("#pori").append(details);
+      $("#pori").append(addColumns);
+      $("#pori #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Cine Atlas')){
-      $("#cineatlas").append(details);
+      $("#cineatlas").append(addColumns);
+      $("#cineatlas #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Plevna')){
-      $("#plevna").append(details);
+      $("#plevna").append(addColumns);
+      $("#plevna #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Turku')){
-      $("#turku").append(details);
+      $("#turku").append(addColumns);
+      $("#turku #" + columnNum).append(details);
     } else if ($(this).find('Theatre').text().includes('Vantaa')){
-      $("#vantaa").append(details);
+      $("#vantaa").append(addColumns);
+      $("#vantaa #" + columnNum).append(details);
     }
   });
 }
