@@ -7,92 +7,100 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="">
-          <h1>Timetable</h1>
-        </a>
-
-        <button class="button navbar-burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <section class="hero is-black">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item">
+                <h1>Timetable</h1>
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+              <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link show-city" data-rel="paakaupunki">
+                    Pääkaupunkiseutu
+                  </a>
+                  <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item show-city" data-rel="helsinki">
+                      Helsinki
+                    </a>
+                    <a class="navbar-item show-city" data-rel="tennispalatsi">
+                      Tennispalatsi, Helsinki
+                    </a>
+                    <a class="navbar-item show-city" data-rel="kinopalatsi">
+                      Kinopalatsi, Helsinki
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item show-city" data-rel="espoo">
+                      Espoo
+                    </a>
+                    <a class="navbar-item show-city" data-rel="isoomena">
+                      Omena, Espoo
+                    </a>
+                    <a class="navbar-item show-city" data-rel="sello">
+                      Sello, Espoo
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item show-city" data-rel="vantaa">
+                      Vantaa
+                    </a>
+                  </div>
+                </div>
+                <a class="navbar-item show-city" data-rel="jyvaskyla">
+                  Jyväskylä
+                </a>
+                <a class="navbar-item show-city" data-rel="kuopio">
+                  Kuopio
+                </a>
+                <a class="navbar-item show-city" data-rel="lahti">
+                  Lahti
+                </a>
+                <a class="navbar-item show-city" data-rel="lappeenranta">
+                  Lappeenranta
+                </a>
+                <a class="navbar-item show-city" data-rel="oulu">
+                  Oulu
+                </a>
+                <a class="navbar-item show-city" data-rel="pori">
+                  Pori
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link show-city" data-rel="tampere">
+                    Tampere
+                  </a>
+                  <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item show-city" data-rel="cineatlas">
+                      Cine Atlas, Tampere
+                    </a>
+                    <a class="navbar-item show-city" data-rel="plevna">
+                      Plevna, Tampere
+                    </a>
+                  </div>
+                </div>
+                <a class="navbar-item show-city" data-rel="turku">
+                  Turku
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
-      <div class="navbar-menu">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link show-city" data-rel="paakaupunki">
-            Pääkaupunkiseutu
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item show-city" data-rel="helsinki">
-              Helsinki
-            </a>
-            <a class="navbar-item show-city" data-rel="tennispalatsi">
-              Tennispalatsi, Helsinki
-            </a>
-            <a class="navbar-item show-city" data-rel="kinopalatsi">
-              Kinopalatsi, Helsinki
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item show-city" data-rel="espoo">
-              Espoo
-            </a>
-            <a class="navbar-item show-city" data-rel="isoomena">
-              Omena, Espoo
-            </a>
-            <a class="navbar-item show-city" data-rel="sello">
-              Sello, Espoo
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item show-city" data-rel="vantaa">
-              Vantaa
-            </a>
+      <section class="hero is-black">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title" id="time"></h1>
           </div>
         </div>
-        <a class="navbar-item show-city" data-rel="jyvaskyla">
-          Jyväskylä
-        </a>
-        <a class="navbar-item show-city" data-rel="kuopio">
-          Kuopio
-        </a>
-        <a class="navbar-item show-city" data-rel="lahti">
-          Lahti
-        </a>
-        <a class="navbar-item show-city" data-rel="lappeenranta">
-          Lappeenranta
-        </a>
-        <a class="navbar-item show-city" data-rel="oulu">
-          Oulu
-        </a>
-        <a class="navbar-item show-city" data-rel="pori">
-          Pori
-        </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link show-city" data-rel="tampere">
-            Tampere
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item show-city" data-rel="cineatlas">
-              Cine Atlas, Tampere
-            </a>
-            <a class="navbar-item show-city" data-rel="plevna">
-              Plevna, Tampere
-            </a>
-          </div>
-        </div>
-        <a class="navbar-item show-city" data-rel="turku">
-          Turku
-        </a>
-      </div>
-    </nav>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title" id="time"></h1>
-        </div>
-      </div>
+      </section>
     </section>
+
     <div class="container is-fluid">
       <div id="paakaupunki" class="city"></div>
       <div id="espoo" class="city"></div>
