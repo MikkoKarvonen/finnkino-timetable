@@ -23,6 +23,7 @@ function parseXml(xml){
     var addColumns = '';
     var columnNum = "columns" + Math.floor(divIndex/4);
     var startTime = $(this).find('dttmShowStart').text().split('T').pop().substring(0,5);
+    var theatreAuditorium = $(this).find('Theatre').text().split(',')[0] + ', ' + $(this).find('TheatreAuditorium').text();
 
     if (today.getHours() < parseInt(startTime.substring(0,2))
     ||(today.getHours() == parseInt(startTime.substring(0,2))
@@ -49,9 +50,7 @@ function parseXml(xml){
             + "<div class='content'>"
               + startTime
               + "<br />"
-              + $(this).find('Theatre').text()
-              + "<br />"
-              + $(this).find('TheatreAuditorium').text()
+              + theatreAuditorium
             + "</div>"
           +"</div>"
           + "<footer class='card-footer'>"
