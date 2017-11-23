@@ -16,6 +16,7 @@ $(document).ready(function(){
 var indexNum = 0;
 
 function parseXml(xml){
+  var numOfShows = $(xml).find('Show').length;
   $(xml).find('Show').each(function(){
     var img = $(this).find('EventLargeImageLandscape').text();
     var link = $(this).find('ShowURL').text();
@@ -60,6 +61,17 @@ function parseXml(xml){
           + "</div>"
         + "</div>"
       + "</div>";
+
+      if ($(this).index() + 1 == numOfShows){
+        while (((divIndex) % 4) != 3){
+          details += "<div class='column empty-column'>"
+            + "<div class='card'>"
+            + "</div>"
+          + "</div>";
+          divIndex++;
+        }
+      }
+
 
       if ($(this).find('Theatre').text().includes('Helsinki')
       || $(this).find('Theatre').text().includes('Espoo')
