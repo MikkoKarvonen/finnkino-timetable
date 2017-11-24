@@ -24,7 +24,6 @@ days();
 function loadCity(obj, date = 0){
   theatreId = $(obj)[0];
   day = nextSevenDays[date];
-  console.log(day);
   $.ajax({
     type: 'GET',
     url: 'http://www.finnkino.fi/xml/Schedule/?area=' + theatreId + '&dt=' + day,
@@ -130,6 +129,24 @@ function showTime() {
   }, 60000);
 }
 showTime();
+
+function addDays(id){
+  if (document.getElementById("sevenDays")){
+    document.getElementById("sevenDays").remove();
+  }
+  var listDays =
+  "<nav class='pagination is-centered' id='sevenDays'>"
+    + "<ul class='pagination-list'>";
+  var liDays = "";
+  for (var i in nextSevenDays){
+    liDays +=
+    "<li>"
+      + "<a class='pagination-link' onclick='loadCity(" + theatreId + "," + i + ")'>" + nextSevenDays[i] + "</a>"
+    + "</li>";
+  };
+  listDays += liDays;
+  $("#" + id).append(listDays);
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
