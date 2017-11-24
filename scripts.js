@@ -1,21 +1,33 @@
 var theatreId = '';
+var today = new Date();
 var nextSevenDays = [];
 
 function days(){
   for (i = 0; i < 7; i++){
     var currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + i);
-    nextSevenDays.push(currentDate);
+    var y = currentDate.getFullYear();
+    var mo = currentDate.getMonth() + 1;
+    var d = currentDate.getDate();
+    if (mo < 10){
+      mo = "0" + mo;
+    }
+    if (d < 10){
+      d = "0" + d;
+    }
+    stringDate = d + "." + mo + "." + y;
+    nextSevenDays.push(stringDate);
   }
 }
 days();
-var today = nextSevenDays[0];
 
-function loadCity(obj){
+function loadCity(obj, date = 0){
   theatreId = $(obj)[0];
+  day = nextSevenDays[date];
+  console.log(day);
   $.ajax({
     type: 'GET',
-    url: 'http://www.finnkino.fi/xml/Schedule/?area=' + theatreId,
+    url: 'http://www.finnkino.fi/xml/Schedule/?area=' + theatreId + '&dt=' + day,
     crossDomain: true,
     dataType: 'html',
     success: parseXml
