@@ -141,7 +141,7 @@ function addDays(id){
   for (var i in nextSevenDays){
     liDays +=
     "<li>"
-      + "<a class='pagination-link' onclick='loadCity(" + theatreId + "," + i + ")'>" + nextSevenDays[i] + "</a>"
+      + "<a class='pagination-link' onclick='loadCity(" + theatreId + "," + i + ")'>" + nextSevenDays[i].substring(0,6) + "</a>"
     + "</li>";
   };
   listDays += liDays;
