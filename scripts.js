@@ -1,5 +1,15 @@
 var theatreId = '';
-var today = new Date();
+var nextSevenDays = [];
+
+function days(){
+  for (i = 0; i < 7; i++){
+    var currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + i);
+    nextSevenDays.push(currentDate);
+  }
+}
+days();
+var today = nextSevenDays[0];
 
 function loadCity(obj){
   theatreId = $(obj)[0];
