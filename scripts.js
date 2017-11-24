@@ -1,17 +1,16 @@
-var theatreIds = ['1014', '1015', '1016', '1017', '1041', '1018', '1019', '1021', '1022'];
+var theatreId = '';
 var today = new Date();
 
-$(document).ready(function(){
-  $(theatreIds).each(function(){
+function loadCity(obj){
+  theatreId = $(obj)[0];
   $.ajax({
-      type: 'GET',
-      url: 'http://www.finnkino.fi/xml/Schedule/?area=' + this,
-      crossDomain: true,
-      dataType: 'html',
-      success: parseXml
-    });
+    type: 'GET',
+    url: 'http://www.finnkino.fi/xml/Schedule/?area=' + theatreId,
+    crossDomain: true,
+    dataType: 'html',
+    success: parseXml
   });
-});
+};
 
 var indexNum = 0;
 
@@ -25,6 +24,13 @@ function parseXml(xml){
     var columnNum = "columns" + Math.floor(divIndex/4);
     var startTime = $(this).find('dttmShowStart').text().split('T').pop().substring(0,5);
     var theatreAuditorium = $(this).find('Theatre').text().split(',')[0] + ', ' + $(this).find('TheatreAuditorium').text();
+
+    if (divIndex == 0){
+      if (document.getElementById("movies")){
+        document.getElementById("movies").remove();
+      }
+      $("#" + theatreId).append("<div id='movies'></div>");
+    }
 
     if (today.getHours() < parseInt(startTime.substring(0,2))
     ||(today.getHours() == parseInt(startTime.substring(0,2))
@@ -71,71 +77,14 @@ function parseXml(xml){
           divIndex++;
         }
       }
-
-
-      if ($(this).find('Theatre').text().includes('Helsinki')
-      || $(this).find('Theatre').text().includes('Espoo')
-      || $(this).find('Theatre').text().includes('Vantaa')){
-        $("#paakaupunki").append(addColumns);
-        $("#paakaupunki #" + columnNum).append(details);
-      }
-
-      if ($(this).find('Theatre').text().includes('Helsinki')){
-        $("#helsinki").append(addColumns);
-        $("#helsinki #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Espoo')){
-        $("#espoo").append(addColumns);
-        $("#espoo #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Tampere')){
-        $("#tampere").append(addColumns);
-        $("#tampere #" + columnNum).append(details);
-      }
-
-      if ($(this).find('Theatre').text().includes('Omena')){
-        $("#isoomena").append(addColumns);
-        $("#isoomena #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Sello')){
-        $("#sello").append(addColumns);
-        $("#sello #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Kinopalatsi, H')){
-        $("#kinopalatsi").append(addColumns);
-        $("#kinopalatsi #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Tennispalatsi')){
-        $("#tennispalatsi").append(addColumns);
-        $("#tennispalatsi #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Jyväskylä')){
-        $("#jyvaskyla").append(addColumns);
-        $("#jyvaskyla #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Kuopio')){
-        $("#kuopio").append(addColumns);
-        $("#kuopio #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Lahti')){
-        $("#lahti").append(addColumns);
-        $("#lahti #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Lappeenranta')){
-        $("#lappeenranta").append(addColumns);
-        $("#lappeenranta #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Oulu')){
-        $("#oulu").append(addColumns);
-        $("#oulu #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Pori')){
-        $("#pori").append(addColumns);
-        $("#pori #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Cine Atlas')){
-        $("#cineatlas").append(addColumns);
-        $("#cineatlas #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Plevna')){
-        $("#plevna").append(addColumns);
-        $("#plevna #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Turku')){
-        $("#turku").append(addColumns);
-        $("#turku #" + columnNum).append(details);
-      } else if ($(this).find('Theatre').text().includes('Vantaa')){
-        $("#vantaa").append(addColumns);
-        $("#vantaa #" + columnNum).append(details);
-      }
+      appedDetails(theatreId, addColumns, columnNum, details);
     }
   });
+}
+
+function appedDetails(id, addCol, colNum, det){
+  $("#" + id + " #movies").append(addCol);
+  $("#" + id + " #movies #" + colNum).append(det);
 }
 
 $(".show-city").click(function(e) {
