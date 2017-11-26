@@ -141,11 +141,32 @@ function addDays(id){
   for (var i in nextSevenDays){
     liDays +=
     "<li>"
-      + "<a class='pagination-link' onclick='loadCity(" + theatreId + "," + i + ")'>" + nextSevenDays[i].substring(0,6) + "</a>"
+      + "<a class='pagination-link";
+      if (i == 0){
+        liDays += " is-current "
+      }
+    liDays +=
+      "' onclick='loadCity(" + theatreId + "," + i + ")'>" + nextSevenDays[i].substring(0,6) + "</a>"
     + "</li>";
   };
   listDays += liDays;
   $("#" + id).append(listDays);
+  currentDay();
+}
+
+var navClick = '.navbar-end a';
+$(navClick).on('click', function(){
+  $(navClick).removeClass('is-active');
+  $(this).addClass('is-active');
+});
+
+//TÄHÄN JÄIT
+function currentDay(){
+  var dateClick = '.pagination-list a';
+  $(dateClick).on('click', function(){
+    $(dateClick).removeClass('is-current');
+    $(this).addClass('is-current');
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
