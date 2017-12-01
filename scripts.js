@@ -37,6 +37,7 @@ var indexNum = 0;
 
 function parseXml(xml){
   var numOfShows = $(xml).find('Show').length;
+
   if (numOfShows > 0){
     $(xml).find('Show').each(function(){
       var img = $(this).find('EventLargeImageLandscape').text();
@@ -51,9 +52,11 @@ function parseXml(xml){
         addMovies();
       }
 
-      if (today.getHours() < parseInt(startTime.substring(0,2))
+      if ((day == nextSevenDays[0]
+      && (today.getHours() < parseInt(startTime.substring(0,2))
       ||(today.getHours() == parseInt(startTime.substring(0,2))
-      && today.getMinutes() < parseInt(startTime.substring(3,5)))) {
+      && today.getMinutes() < parseInt(startTime.substring(3,5)))))
+      || (day != nextSevenDays[0])) {
 
         if (((divIndex) % 4) == 0){
           addColumns += "<div class='columns' id='" + columnNum + "'>";
