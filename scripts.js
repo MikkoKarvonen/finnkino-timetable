@@ -37,75 +37,94 @@ var indexNum = 0;
 
 function parseXml(xml){
   var numOfShows = $(xml).find('Show').length;
-  $(xml).find('Show').each(function(){
-    var img = $(this).find('EventLargeImageLandscape').text();
-    var link = $(this).find('ShowURL').text();
-    var divIndex = $(this).index();
-    var addColumns = '';
-    var columnNum = "columns" + Math.floor(divIndex/4);
-    var startTime = $(this).find('dttmShowStart').text().split('T').pop().substring(0,5);
-    var theatreAuditorium = $(this).find('Theatre').text().split(',')[0] + ', ' + $(this).find('TheatreAuditorium').text();
+  if (numOfShows > 0){
+    $(xml).find('Show').each(function(){
+      var img = $(this).find('EventLargeImageLandscape').text();
+      var link = $(this).find('ShowURL').text();
+      var divIndex = $(this).index();
+      var addColumns = '';
+      var columnNum = "columns" + Math.floor(divIndex/4);
+      var startTime = $(this).find('dttmShowStart').text().split('T').pop().substring(0,5);
+      var theatreAuditorium = $(this).find('Theatre').text().split(',')[0] + ', ' + $(this).find('TheatreAuditorium').text();
 
-    if (divIndex == 0){
-      if (document.getElementById("movies")){
-        document.getElementById("movies").remove();
-      }
-      $("#" + theatreId).append("<div id='movies'></div>");
-    }
-
-    if (today.getHours() < parseInt(startTime.substring(0,2))
-    ||(today.getHours() == parseInt(startTime.substring(0,2))
-    && today.getMinutes() < parseInt(startTime.substring(3,5)))) {
-
-      if (((divIndex) % 4) == 0){
-        addColumns += "<div class='columns' id='" + columnNum + "'>";
+      if (divIndex == 0){
+        addMovies();
       }
 
-      var details =
-      "<div class='column'>"
-        + "<div class='card'>"
-          + "<div class='card-image'>"
-            + "<figure class='image'>"
-              + "<img src=" + img + " class='juliste'></img>"
-            + "</figure>"
-          + "</div>"
-          + "<div class='card-content'>"
-            + "<div class='media'>"
-              + "<div class='media-content'>"
-                + "<p class='title is-4'>"+ $(this).find('Title').text() + "</p>"
-              + "</div>"
-            + "</div>"
-            + "<div class='content'>"
-              + startTime
-              + "<br />"
-              + theatreAuditorium
-            + "</div>"
-          +"</div>"
-          + "<footer class='card-footer'>"
-            + "<p class='card-footer-item'>"
-              + "<a href=" + link + " target='blank'>Liput</a>"
-            + "</p>"
-          + "</div>"
-        + "</div>"
-      + "</div>";
+      if (today.getHours() < parseInt(startTime.substring(0,2))
+      ||(today.getHours() == parseInt(startTime.substring(0,2))
+      && today.getMinutes() < parseInt(startTime.substring(3,5)))) {
 
-      if ($(this).index() + 1 == numOfShows){
-        while (((divIndex) % 4) != 3){
-          details += "<div class='column empty-column'>"
-            + "<div class='card'>"
-            + "</div>"
-          + "</div>";
-          divIndex++;
+        if (((divIndex) % 4) == 0){
+          addColumns += "<div class='columns' id='" + columnNum + "'>";
         }
+
+        var details =
+        "<div class='column'>"
+          + "<div class='card'>"
+            + "<div class='card-image'>"
+              + "<figure class='image'>"
+                + "<img src=" + img + " class='juliste'></img>"
+              + "</figure>"
+            + "</div>"
+            + "<div class='card-content'>"
+              + "<div class='media'>"
+                + "<div class='media-content'>"
+                  + "<p class='title is-4'>"+ $(this).find('Title').text() + "</p>"
+                + "</div>"
+              + "</div>"
+              + "<div class='content'>"
+                + startTime
+                + "<br />"
+                + theatreAuditorium
+              + "</div>"
+            +"</div>"
+            + "<footer class='card-footer'>"
+              + "<p class='card-footer-item'>"
+                + "<a href=" + link + " target='blank'>Liput</a>"
+              + "</p>"
+            + "</div>"
+          + "</div>"
+        + "</div>";
+
+        if ($(this).index() + 1 == numOfShows){
+          while (((divIndex) % 4) != 3){
+            details += "<div class='column empty-column'>"
+              + "<div class='card'>"
+              + "</div>"
+            + "</div>";
+            divIndex++;
+          }
+        }
+        appedDetails(theatreId, addColumns, columnNum, details);
       }
-      appedDetails(theatreId, addColumns, columnNum, details);
-    }
-  });
+    });
+  } else {
+    addMovies();
+    var noMovies =
+    '<section class="hero">'
+      + '<div class="hero-body">'
+        + '<div class="container">'
+          + '<h1 class="title">'
+            + 'Ei näytettäviä elokuvia'
+          + '</h1>'
+        + '</div>'
+      + '</div>'
+    + '</section>';
+    $("#" + theatreId + " #movies").append(noMovies);
+  }
 }
 
 function appedDetails(id, addCol, colNum, det){
   $("#" + id + " #movies").append(addCol);
   $("#" + id + " #movies #" + colNum).append(det);
+}
+
+function addMovies(){
+  if (document.getElementById("movies")){
+    document.getElementById("movies").remove();
+  }
+  $("#" + theatreId).append("<div id='movies'></div>");
 }
 
 $(".show-city").click(function(e) {
