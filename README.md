@@ -10,7 +10,6 @@ A website where one can see upcoming Finnkino movies.
 
 ## Things to do
 
-* Don't show days without any movies.
 * Parse movie link for seats.
 * Filter displayed movies.
 * Smoother transitions.

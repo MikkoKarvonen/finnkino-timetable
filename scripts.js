@@ -33,8 +33,6 @@ function loadCity(obj, date = 0){
   });
 };
 
-var indexNum = 0;
-
 function parseXml(xml){
   var numOfShows = $(xml).find('Show').length;
 
@@ -182,7 +180,6 @@ $(navClick).on('click', function(){
   $(this).addClass('is-active');
 });
 
-//TÄHÄN JÄIT
 function currentDay(){
   var dateClick = '.pagination-list a';
   $(dateClick).on('click', function(){
