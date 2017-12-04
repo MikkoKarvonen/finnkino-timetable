@@ -14,7 +14,6 @@ A website where one can see upcoming Finnkino movies.
 * Filter displayed movies.
 * Smoother transitions.
 * Fix navbar colors.
-* Add more info next to city.
 * Fix  mobile navbar.
 
 ## Author
