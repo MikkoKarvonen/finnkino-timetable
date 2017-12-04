@@ -64,7 +64,7 @@ $tampCodes = array(
                     <div class="navbar-dropdown is-boxed">
                       <?php if ($key == 1014){
                         while (list($pksKey, $pksValue) = each($pksCodes)){;?>
-                          <a class="navbar-item show-city" data-rel='<?php echo $pksKey;?>' onclick="loadCity(<?php echo $pksKey;?>);addDays(<?php echo $pksKey;?>)">
+                          <a class="navbar-item show-city dropdown-item" data-rel='<?php echo $pksKey;?>' onclick="loadCity(<?php echo $pksKey;?>);addDays(<?php echo $pksKey;?>)">
                             <?php echo $pksValue;?>
                           </a>
                           <?php if ($pksKey == 1031 || $pksKey == 1038){;?>
@@ -72,7 +72,7 @@ $tampCodes = array(
                           <?php };?>
                       <?php }} else {;
                         while (list($tampKey, $tampValue) = each($tampCodes)){;?>
-                        <a class="navbar-item show-city" data-rel='<?php echo $tampKey;?>' onclick="loadCity(<?php echo $tampKey;?>);addDays(<?php echo $tampKey;?>)">
+                        <a class="navbar-item show-city dropdown-item" data-rel='<?php echo $tampKey;?>' onclick="loadCity(<?php echo $tampKey;?>);addDays(<?php echo $tampKey;?>)">
                           <?php echo $tampValue;?>
                         </a>
                       <?php }};?>

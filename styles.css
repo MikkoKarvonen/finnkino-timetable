@@ -17,3 +17,7 @@ html{
 .hero{
   margin-bottom: 25px;
 }
+
+.dropdown-item{
+  color: rgba(105, 105, 105, 1) !important;
+}
