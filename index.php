@@ -8,6 +8,7 @@ $cityCodes = array(
     1038 => array('Sello', 'Espoo'),
     1002 => array('Helsinki', 'Tennispalatsi - Kinopalatsi'),
     1031 => array('Kinopalatsi', 'Helsinki'),
+    1032 => array('Maxim', 'Helsinki'),
     1033 => array('Tennispalatsi', 'Helsinki'),
     1013 => array('Vantaa', 'Flamingo'),
     1015 => array('Jyväskylä', 'Fantasia'),

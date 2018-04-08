@@ -15,6 +15,7 @@ $pksCodes = array(
   1002 => 'Helsinki',
   1033 => 'Tennispalatsi',
   1031 => 'Kinopalatsi',
+  1032 => 'Maxim',
   1012 => 'Espoo',
   1039 => 'Omena',
   1038 => 'Sello',
