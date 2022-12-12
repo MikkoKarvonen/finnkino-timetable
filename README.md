@@ -1,3 +1,5 @@
+⚠️ Most likely doesn't work anymore and I have no interest to update this ⚠️
+
 # Finnkino timetable
 
 A website where one can see upcoming Finnkino movies.
